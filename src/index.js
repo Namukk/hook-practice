@@ -2,15 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { UseInputApp } from "./UseInputApp";
 import { UseStateApp } from "./UseStateApp";
-import { UseEffectApp } from "./UseEffectApp";
+import { UseConfirmApp } from "./UseConfirmApp";
+import { UseNetworkApp } from "./UseNetworkApp";
 
 ReactDOM.render(
   <React.StrictMode>
     <>
-    
       <UseStateApp />
       <UseInputApp />
-      <UseEffectApp />
+      <UseConfirmApp />
+      <UseNetworkApp />
     </>
   </React.StrictMode>,
   document.getElementById("root")
