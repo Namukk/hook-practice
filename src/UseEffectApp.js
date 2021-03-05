@@ -1,15 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-export const UseEffectApp = () => {
-  const sayHello = () => console.log("hello");
-  const [number, setNumber] = useState(0);
-  const [aNumber, setANumber] = useState(0);
-  useEffect(sayHello, []);
+function User({ user, onRemove, onToggle }) {
+  useEffect(() => {
+    console.log("컴포넌트가 화면에 나타남");
+    return () => {
+      console.log("컴포넌트가 화면에서 사라짐");
+    };
+  }, []);
   return (
-    <div className="App">
-      <h1>Hi!</h1>
-      <button onClick={() => setNumber(number + 1)}>{number}</button>
-      <button onClick={() => setANumber(number + 1)}>{aNumber}</button>
+    <div>
+      <b
+        style={{
+          cursor: "pointer",
+          color: user.active ? "green" : "black",
+        }}
+        onClick={() => onToggle(user.id)}
+      >
+        {user.username}
+      </b>
+      &nbsp;
+      <span>({user.email})</span>
+      <button onClick={() => onRemove(user.id)}>삭제</button>
     </div>
   );
-};
+}
+
+export function UseEffectApp({ users, onRemove, onToggle }) {
+  console.log(users);
+  return (
+    <div>
+      {users.map((user) => (
+        <User
+          user={user}
+          key={user.id}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        />
+      ))}
+    </div>
+  );
+}
